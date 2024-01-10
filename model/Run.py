@@ -22,7 +22,7 @@ Mode = 'train'
 DEBUG = 'False'
 DATASET = 'Manchester'  # PEMS08 or Manchester
 DEVICE = 'cuda:0'
-MODEL = 'PDNet'
+MODEL = 'MSTAGCN'
 
 # get configuration
 config_file = './{}.conf'.format(DATASET)
