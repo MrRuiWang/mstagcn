@@ -124,15 +124,12 @@ class Trainer(object):
             print('start epoch:', self.args.start_epoch)
 
             print('load weight from: ', params_filename)
-        train_time = []
-        val_time = []
+        
         for epoch in range(self.args.start_epoch, self.args.epochs + 1):
             params_filename = os.path.join(params_path, 'epoch_%s.pth' % epoch)
             # epoch_time = time.time()
-            train_start = time.time()
+         
             train_epoch_loss = self.train_epoch(epoch)
-            train_end = time.time()
-            train_time.append(train_end - train_start)
             # print(time.time()-epoch_time)
             # exit()
             if self.val_loader == None:
@@ -140,10 +137,9 @@ class Trainer(object):
             else:
                 val_dataloader = self.val_loader
 
-            val_strat = time.time()
+        
             val_epoch_loss = self.val_epoch(epoch, val_dataloader)
-            val_end = time.time()
-            val_time.append(val_end - val_strat)
+      
             train_loss_list.append(train_epoch_loss)
             val_loss_list.append(val_epoch_loss)
             if train_epoch_loss > 1e6:
@@ -172,9 +168,6 @@ class Trainer(object):
         training_time = time.time() - start_time
         self.logger.info("Total training time: {:.4f}min, best loss: {:.6f}".format((training_time / 60), best_loss))
 
-        self.logger.info("Average Training Time: {:.4f} secs/epoch".format(
-            np.mean(train_time)))
-        self.logger.info("Average Inference Time: {:.4f} secs".format(np.mean(val_time)))
 
         # save the best model to file
         if not self.args.debug:
