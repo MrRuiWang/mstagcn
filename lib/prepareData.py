@@ -125,7 +125,7 @@ def read_and_generate_dataset(graph_signal_matrix_filename,
      val_week_norm, test_week_norm) = normalization(train_week,
                                                     val_week,
                                                     test_week)
-    # 由于时间编码 第二维和第三维的时间编码列不能进行归一化处理
+
     train_week_norm[:, :, 1:2] = train_week[:, :, 1:2]
     train_week_norm[:, :, 2:3] = train_week[:, :, 2:3]
 
