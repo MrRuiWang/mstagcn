@@ -118,10 +118,6 @@ if torch.cuda.is_available():
 else:
     args.device = 'cpu'
 
-# if DATASET == 'Manchester':
-#     sensor_ids, sensor_id_to_ind, adj_mx = load_graph_data("../data/Manchester/adj_mat_manchester.pkl")
-# else:
-#     sensor_ids, sensor_id_to_ind, adj_mx = load_graph_data("../data/PEMS08/adj_mat1023.pkl")
 time_strides = args.num_of_hours
 model = Network(args, time_strides)
 model = model.to(args.device)
@@ -218,4 +214,3 @@ elif args.mode == 'test':
     trainer.test(model, trainer.args, test_loader, trainer.logger)
 else:
     raise ValueError
-os.system("/usr/bin/shutdown")  # 加上之后自动服务器自动关机
