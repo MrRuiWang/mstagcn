@@ -29,13 +29,6 @@ config_file = './{}.conf'.format(DATASET)
 config = configparser.ConfigParser()
 config.read(config_file)
 
-# 打印所有的节（sections）
-sections = config.sections()
-print("所有节（sections）:", sections)
-for section in sections:
-    items = config.items(section)
-    print(f"节 '{section}' 中的所有选项和对应的值:", items)
-
 config_data = config['data']
 config_model = config['model']
 config_train = config['train']
@@ -127,7 +120,6 @@ for p in model.parameters():
         nn.init.xavier_uniform_(p)
     else:
         nn.init.uniform_(p)
-print_model_parameters(model, only_num=False)
 
 if args.data_path == "Manchester":
     data_path = "../data/" + args.data_path + "/" + args.data_path + "DataFinall" + "_r" + str(
